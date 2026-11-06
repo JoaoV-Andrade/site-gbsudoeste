@@ -1,0 +1,64 @@
+(function () {
+  "use strict";
+
+  // A new iframe represents a new booking flow. Repeated confirmations from the
+  // same flow must not generate multiple conversions or redirects.
+  const completed = new WeakSet();
+
+  window.GBBookingConversion = function (event, school, thankYouURL) {
+    const iframe = document.getElementById("gbbookatrial");
+    const data = event.data;
+    if (!iframe || event.source !== iframe.contentWindow || !data ||
+        (data.message !== "gformiframe:confirmation" && data.action !== "gbLoadCustomThankyou")) return;
+
+    let bookingOrigin;
+    try {
+      bookingOrigin = new URL(iframe.src, window.location.href).origin;
+    } catch (_) {
+      return;
+    }
+    if (event.origin !== bookingOrigin || completed.has(iframe)) return;
+    completed.add(iframe);
+
+    const site = window.GB_booking_site;
+    const context = school || {
+      school_id: site.site_id,
+      school_name: site.site_name,
+      school_url: site.site_url,
+      school_post_id: "",
+    };
+
+    let destination = thankYouURL;
+    // Retain the provider's fallback redirect only on its verified origin.
+    if (!destination && data.url) {
+      try {
+        const url = new URL(data.url, iframe.src);
+        if (url.origin === bookingOrigin && /^https?:$/.test(url.protocol)) destination = url.href;
+      } catch (_) { /* No usable fallback URL. */ }
+    }
+
+    let redirected = false;
+    function redirect() {
+      if (!destination || redirected) return;
+      redirected = true;
+      window.location.href = destination;
+    }
+
+    // Also works when GTM is absent, blocked, or consent prevents tags firing.
+    if (destination) window.setTimeout(redirect, 2000);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "free_trial_booking_complete",
+      school_id: context.school_id,
+      school_name: context.school_name,
+      school_url: context.school_url,
+      school_post_id: context.school_post_id || "",
+      source_site_id: site.site_id,
+      source_site_url: site.site_url,
+      booking_provider: data.action === "gbLoadCustomThankyou" ? "crm" : "gravity_forms",
+      booking_context: school ? "national_school_selector" : "local_site",
+      eventCallback: redirect,
+      eventTimeout: 1800,
+    });
+  };
+})();

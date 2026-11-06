@@ -1,0 +1,20 @@
+$(document).ready(function () {
+  $(".marquee_container > .GB_marquee > .pause").on("click", function () {
+    $container = "#" + $(this).parent().attr("id");
+    if (
+      $($container + " .enable-animation .marquee__content").css(
+        "animation-play-state"
+      ) == "paused"
+    ) {
+      $($container + " .enable-animation .marquee__content").css(
+        "animation-play-state",
+        "running"
+      );
+    } else {
+      $($container + " .enable-animation .marquee__content").css(
+        "animation-play-state",
+        "paused"
+      );
+    }
+  });
+});

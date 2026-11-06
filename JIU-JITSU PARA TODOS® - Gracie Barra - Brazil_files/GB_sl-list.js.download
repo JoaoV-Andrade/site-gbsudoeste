@@ -1,0 +1,444 @@
+(function ($) {
+  // ✅ Shared Variables
+  let userLocation = GB_sl_list.default_location;
+  let allSchools = [];
+  let autocomplete = null;
+  let schoolsLoaded = false; // default schools loaded
+  let allSchoolsLoaded = false; // default loading
+  let thankYouPageURL = "";
+  let oldText = $(".title").html();
+  let schoolOffset = 0; // default offset
+  const schoolLimit = Number(GB_sl_list.schoolLimit); // get the limit from the ajax
+  let currentSchoolsRequest = null;
+  let locationRequestVersion = 0;
+
+  // ✅ Utilities
+
+  function getDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLon / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  function isValidLatLng(lat, lng) {
+    return (
+      Number.isFinite(lat) &&
+      Number.isFinite(lng) &&
+      lat >= -90 &&
+      lat <= 90 &&
+      lng >= -180 &&
+      lng <= 180
+    );
+  }
+
+  function resetListState() {
+    locationRequestVersion += 1;
+
+    if (
+      currentSchoolsRequest &&
+      typeof currentSchoolsRequest.abort === "function" &&
+      currentSchoolsRequest.readyState !== 4
+    ) {
+      currentSchoolsRequest.abort();
+    }
+    currentSchoolsRequest = null;
+
+    schoolOffset = 0;
+    allSchools = [];
+    allSchoolsLoaded = false;
+    $("#gb_sl-modal_list .gb_sl-school-item").remove();
+    $("#gb_sl-loadmore").show().html("Load More");
+  }
+
+  function renderList(schools) {
+    const $list = $("#gb_sl-modal_list");
+    $list.find(".gb_sl-school-item").remove();
+
+    schools.forEach((school) => {
+			// console.log( 'school::', school );
+
+      const $item = $(`
+        <div 
+          data-id="${school.id}" 
+          data-local-url="${school.localurl}"
+          data-booking-link="${school.bookingWidgetLink}" 
+          data-booking-widget="${school.hasBookingWidget}" 
+          data-title="${school.title}" 
+          data-calendar-name="${school.school_calendar_name}" 
+          data-thank-you="${school.thankYouPageURL}" 
+          class="gb_sl-school-item"
+        >
+          <div class="itemContent">
+            <span class="school_name">${school.title}</span>
+            <span class="school_address">
+							<i class="fa-solid fa-location-dot"></i>
+							${school.fullAddress}
+						</span>
+          </div>
+        </div>
+      `);
+
+      $item.data("booking-context", {
+        school_id: String(school.site_id || ""),
+        school_name: school.title,
+        school_url: school.siteurl,
+        school_post_id: String(school.id || ""),
+      });
+      $list.append($item);
+    });
+  }
+
+  function filterSchoolList(lat, lng) {
+    if (!isValidLatLng(lat, lng) || !allSchools.length) return;
+
+    const filtered = allSchools.map((school) => {
+      const schoolLat = parseFloat(school.lat);
+      const schoolLng = parseFloat(school.lng);
+      const isValid = !isNaN(schoolLat) && !isNaN(schoolLng);
+
+      return {
+        ...school,
+        distance: isValid
+          ? getDistance(lat, lng, schoolLat, schoolLng)
+          : Number.MAX_VALUE,
+      };
+    });
+
+    const sorted = filtered.sort((a, b) => a.distance - b.distance);
+    renderList(sorted);
+  }
+
+  function sortAndRenderSchools() {
+    if (
+      !userLocation ||
+      !isValidLatLng(Number(userLocation.lat), Number(userLocation.lng)) ||
+      !allSchools.length
+    ) {
+      return;
+    }
+
+    allSchools.forEach((school) => {
+      const schoolLat = parseFloat(school.lat);
+      const schoolLng = parseFloat(school.lng);
+      const isValid = !isNaN(schoolLat) && !isNaN(schoolLng);
+
+      school.distance = isValid
+        ? getDistance(userLocation.lat, userLocation.lng, schoolLat, schoolLng)
+        : Number.MAX_VALUE;
+    });
+
+    allSchools.sort((a, b) => a.distance - b.distance);
+    renderList(allSchools);
+  }
+
+  function setupAutocomplete() {
+    const autocompleteElement = document.getElementById("gb_sl_modal-search");
+    if (!autocompleteElement) return;
+
+    autocomplete = new google.maps.places.Autocomplete(autocompleteElement, {
+      fields: ["geometry"],
+    });
+
+    autocomplete.addListener("place_changed", function () {
+      const place = autocomplete.getPlace();
+      if (place && place.geometry && place.geometry.location) {
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+        filterSchoolList(lat, lng);
+      } else {
+        console.warn("No geometry found for selected place.");
+      }
+    });
+  }
+
+  // update
+  // sanka
+  // 12-11-2025
+  function fetchAndStoreSchools(append = false) {
+    $("#gb_sl-loadmore").html("Loading..."); // show loading
+    const requestVersion = locationRequestVersion;
+    const requestOffset = schoolOffset;
+    const lat = Number(userLocation?.lat);
+    const lng = Number(userLocation?.lng);
+
+    if (!isValidLatLng(lat, lng)) {
+      $("#gb_sl-loadmore").html("Load More");
+      return;
+    }
+
+    // set the school limit and the offset
+    currentSchoolsRequest = $.ajax({
+      url: GB_sl_list.ajax_url,
+      method: "POST",
+      data: {
+        action: "GB_sl_get_schools",
+        offset: requestOffset,
+        limit: schoolLimit,
+        lat: lat, // pass the user lat and lng
+        lng: lng, // pass the user lat and lng
+      },
+      success: function (schools) {
+        // Ignore stale responses from previous location state or paging state.
+        if (
+          requestVersion !== locationRequestVersion ||
+          requestOffset !== schoolOffset
+        ) {
+          return;
+        }
+
+        if (!Array.isArray(schools)) {
+          schools = [];
+        }
+
+				// if no length
+				if (!schools.length) {
+          allSchoolsLoaded = true; // everything is loaded
+          $("#gb_sl-loadmore").hide(); // hide all
+          return;
+        }
+
+        // append to the list
+        if (append) {
+          allSchools = [...allSchools, ...schools];
+        } else {
+          allSchools = schools;
+        }
+
+        if (userLocation) {
+          sortAndRenderSchools();
+        } else {
+          renderList(allSchools);
+        }
+
+        schoolOffset += schools.length; // keep offset aligned with actual returned batch size
+
+        $("#gb_sl-loadmore").html("Load More"); // reset the text
+      },
+      error: function (_jqXHR, textStatus) {
+        if (textStatus === "abort") {
+          return;
+        }
+        $("#gb_sl-loading").hide();
+        $("#gb_sl-modal_list").html(
+          "<p>Failed to load schools. Please try again.</p>",
+        );
+      },
+      complete: function () {
+        if (
+          currentSchoolsRequest &&
+          currentSchoolsRequest.readyState === 4
+        ) {
+          currentSchoolsRequest = null;
+        }
+      },
+    });
+  }
+
+  function reloadSchoolsForLocation() {
+    resetListState();
+    fetchAndStoreSchools(false);
+  }
+
+  function maybeRefreshWithIpLookup() {
+    $.ajax({
+      url: "https://ipapi.co/json/",
+      method: "GET",
+      timeout: 4000,
+      success: function (res) {
+        const lat = parseFloat(res?.latitude);
+        const lng = parseFloat(res?.longitude);
+
+        if (!isValidLatLng(lat, lng)) return;
+
+        const currentLat = parseFloat(userLocation?.lat);
+        const currentLng = parseFloat(userLocation?.lng);
+        if (
+          isValidLatLng(currentLat, currentLng) &&
+          getDistance(currentLat, currentLng, lat, lng) < 50
+        ) {
+          return;
+        }
+
+        userLocation = { lat, lng };
+        reloadSchoolsForLocation();
+      },
+      error: function () {
+        // Keep current location if IP lookup service is unavailable.
+      },
+    });
+  }
+
+  // ✅ Main UI Logic
+  $(document).ready(function () {
+    UIkit.util.on("#modal-bookclass", "beforeshow", function () {
+      // updated fix for the proximity
+      if (schoolsLoaded) return;
+
+      schoolsLoaded = true;
+      setupAutocomplete();
+      reloadSchoolsForLocation();
+      maybeRefreshWithIpLookup();
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            reloadSchoolsForLocation();
+          },
+          function () {
+            // Keep already-loaded IP/default results.
+          },
+          {
+            enableHighAccuracy: false,
+            timeout: 7000,
+            maximumAge: 300000,
+          },
+        );
+      }
+    });
+
+    $("#gb_sl-modal_list").on("click", ".gb_sl-school-item", function () {
+      const $el = $(this);
+      thankYouPageURL = $el.data("thank-you");
+
+      const hasWidget = $el.data("booking-widget");
+      const bookingLink = $el.data("booking-link");
+      const localUrl = $el.data("local-url");
+      const schoolTitle = $el.data("title");
+      const calendarName = $el.data("calendar-name");
+
+      if (hasWidget && bookingLink) {
+        $("#gb_sl-modal_list").hide();
+				$("#gb_sl-loadmore").hide();
+        $(".backtoList").show();
+        $(".nationalName").show();
+        $(".top_contentcontainer").addClass("pb-0");
+        $(".title").html(schoolTitle);
+        $(".copy").hide();
+        if (calendarName) $(".titleCopy").hide();
+
+        const iframe = `<iframe id="gbbookatrial" title="Book A Trial iFrame" src="${bookingLink}" width="100%" frameborder="0"></iframe>`;
+        $("#GB-Bookingwidget").html(iframe).addClass("loaded");
+        document.getElementById("gbbookatrial").gbBookingContext = $el.data("booking-context");
+        $("#GB_crm_modal").show();
+      } else if (!hasWidget && localUrl) {
+        window.open(localUrl, "_blank");
+      } else if (!hasWidget && bookingLink) {
+        window.open(bookingLink, "_blank");
+      }
+    });
+
+    $("#gb_sl_modal-search").on("input", function () {
+      const query = $(this).val().toLowerCase();
+      const filtered = allSchools.filter((school) =>
+        school.title.toLowerCase().includes(query),
+      );
+      renderList(filtered);
+    });
+
+    $(".backtoList").on("click", function () {
+      $("#gb_sl-modal_list").show();
+			$("#gb_sl-loadmore").show();
+      $("#GB_crm_modal").hide();
+      $("#GB_form_modal").hide();
+      $(".nationalName").hide();
+      $(".title").html(oldText);
+      $(".top_contentcontainer").removeClass("pb-0");
+      $(".copy").show();
+      $(this).hide();
+    });
+
+    $("#use-my-location-modal").on("click", function (e) {
+      e.preventDefault();
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            reloadSchoolsForLocation();
+          },
+          function () {
+            alert("Unable to retrieve your location.");
+          },
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    });
+  });
+
+  // ✅ IFrame message listener
+  window.addEventListener("message", (event) => {
+    // console.log( 'thankYouPageURL::', thankYouPageURL );
+
+    if (!event.data || typeof event.data !== "object") return;
+
+    if (event.data.action === "gbMembersAdjustIFrame") {
+      $("#gbbookatrial").css("height", Number(event.data.height) + 75 + "px");
+    }
+
+    if (event.data.message === "gformiframe:size") {
+      $("#gbbookatrial").css("height", event.data.height + "px");
+    }
+
+    if (
+      event.data.message === "gformiframe:confirmation" ||
+      event.data.action === "gbLoadCustomThankyou"
+    ) {
+      const iframe = document.getElementById("gbbookatrial");
+      window.GBBookingConversion(event, iframe && iframe.gbBookingContext, thankYouPageURL);
+    }
+  });
+
+  // ✅ Modal reset on close
+  $("#modal-bookclass").on({
+    "hidden.uk.modal": function () {
+      $("#gb_sl-modal_list").show();
+			$("#gb_sl-loadmore").show();
+      $("#GB_crm_modal").hide();
+      $("#GB_form_modal").hide();
+      $(".nationalName").hide();
+      $(".backtoList").hide();
+      $(".title").html(oldText);
+      $(".top_contentcontainer").removeClass("pb-0");
+      $(".copy").show();
+
+      // reset the initial click values
+      if (
+        currentSchoolsRequest &&
+        typeof currentSchoolsRequest.abort === "function" &&
+        currentSchoolsRequest.readyState !== 4
+      ) {
+        currentSchoolsRequest.abort();
+      }
+      currentSchoolsRequest = null;
+      locationRequestVersion += 1;
+
+      schoolOffset = 0;
+      allSchools = [];
+      schoolsLoaded = false;
+      allSchoolsLoaded = false;
+      userLocation = GB_sl_list.default_location;
+    },
+  });
+
+  // the click to load more for the modal list
+  $("#gb_sl-loadmore").on("click", function () {
+		// console.log( 'allSchoolsLoaded::', allSchoolsLoaded );
+    if (allSchoolsLoaded) return;
+
+    fetchAndStoreSchools(true); // append mode
+  });
+})(jQuery);

@@ -1,0 +1,9 @@
+(function ($) {
+  // A form field must have the class additional-info, for this to work
+  $(".gform_fields .gfield.additional-info label").on("click", function () {
+    $(this).toggleClass("expand");
+    $(".gform_fields .gfield.additional-info .ginput_container").toggleClass(
+      "show"
+    );
+  });
+})(jQuery);

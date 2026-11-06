@@ -1,0 +1,147 @@
+$(document).ready(function () {
+  /**
+   * Get the current window width
+   */
+  function getWindowWidth() {
+    return Math.max( document.documentElement.clientWidth || 0, window.innerWidth || 0 );
+  }
+
+  $(".menuToggle").on("click", function () {
+    $me = "#mobile-nav-container";
+    $($me).animate(
+      {
+        left: "0px",
+      },
+      300,
+      "linear"
+    );
+
+    setTimeout(function () {
+      $(".mobile-site-navigation").scrollTop(0);
+    }, 50);
+
+    $(".site-header").addClass("hide-header");
+    $siteHeader[0].style.setProperty("z-index", "0", "important");
+
+    // Always Show the Top of the Mobile Menu
+    $(".mobile-site-navigation").scrollTop(0);
+  });
+
+  $(".close").on("click", function () {
+    $me = "#mobile-nav-container";
+    $($me).animate(
+      {
+        left: "-100vw",
+      },
+      300,
+      "linear"
+    );
+
+    $(".site-header").removeClass("hide-header");
+
+    setTimeout(function () {
+      $siteHeader[0].style.setProperty("z-index", "10", "important");
+    }, 1000);
+  });
+
+  // Local: For the National Hamburger Menu
+  $(".menuToggle_national").on("click", function () {
+    $("#masthead").addClass("uk-hidden");
+  });
+  $(".close").on("click", function () {
+    $("#masthead").removeClass("uk-hidden");
+  });
+
+  // Non scroll
+  $("button.menuToggle").on("click", function () {
+    $(".hide-content").hide();
+  });
+  $(".close").on("click", function () {
+    $(".hide-content").show();
+  });
+
+  function isMobileWidth() {
+    return $(window).width() <= 1100;
+  }
+
+  // Sticky Nav
+  var $siteHeader = $(".site-header");
+  var $stickySpacer = $(".sticky-spacer");
+  var startStickyNavMobile = 24;
+  var startStickyNavDesktop = 58;
+  var windowWidth = getWindowWidth();
+  var lastScrollTop = 0;
+  
+  /**
+   * Run the function should users resize their window.
+   */
+  window.addEventListener( 'resize', function() {
+    windowWidth = getWindowWidth();
+  }, true);
+
+  function toggleStickyClasses() {
+    $siteHeader.toggleClass( 'sticky-nav' );
+    $stickySpacer.toggleClass( 'show' );
+  }
+
+  $(window).on("scroll", function () {
+    var scrollTop = $( this ).scrollTop();
+    
+    // Only show the sticky menu when scrolling up
+    if (scrollTop < lastScrollTop) {
+      // Mobile
+      if( isMobileWidth() && scrollTop > startStickyNavMobile ) {
+        if( !$siteHeader.hasClass( 'sticky-nav' ) ) {
+          toggleStickyClasses();
+        }
+      }
+      // Desktop
+      else if( scrollTop > startStickyNavDesktop ) {
+        if( !$siteHeader.hasClass( 'sticky-nav' ) ) {
+          toggleStickyClasses();
+        }
+      } else {
+        if( $siteHeader.hasClass( 'sticky-nav' ) ) {
+          toggleStickyClasses();
+        }
+      }
+    } else {
+      $siteHeader.removeClass( 'sticky-nav' );
+      $stickySpacer.removeClass( 'show' );
+    }
+    
+    lastScrollTop = scrollTop;
+
+    //var scrollTop = $(this).scrollTop();
+
+    // if (!isMobileWidth()) {
+    //   // Always Display on Desktop
+    //   $siteHeader.css("transform", "translateY(0)");
+    //   return;
+    // }
+
+    /* if (scrollTop <= 0) {
+      // Display when it's on top of the page
+      $siteHeader.css("transform", "translateY(0)");
+      $siteHeader[0].style.setProperty("margin-top", "25px", "important");
+      $(".back-home").css("display", "block");
+      $(".sticky-book-class-btn").css("display", "none");
+      if (isMobileWidth()) {
+        $(".back-home").css("display", "block");
+      }
+    } else if (scrollTop < lastScrollTop) {
+      // Display when Scrolling Up
+      $siteHeader.css("transform", "translateY(0)");
+      $siteHeader[0].style.setProperty("z-index", "10", "important");
+      $(".sticky-book-class-btn").css("display", "block");
+      if (isMobileWidth()) {
+        $(".back-home").css("display", "none");
+      }
+    } else {
+      // Don't Display when Scrolling Down
+      $siteHeader.css("transform", "translateY(-200%)");
+    }
+
+    lastScrollTop = scrollTop; */
+  });
+});

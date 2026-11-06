@@ -1,0 +1,16 @@
+(function ($) {
+  const $nextLink = $("a.next.page-numbers");
+  const $prevLink = $("a.prev.page-numbers");
+
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    $nextLink.html("&gt;");
+  } else {
+    $nextLink.text("Next Page");
+  }
+
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    $prevLink.html("&lt;");
+  } else {
+    $prevLink.text("Previous Page");
+  }
+})(jQuery);
