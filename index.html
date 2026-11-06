@@ -158,6 +158,28 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
   .gbs-wa-float{position:fixed;right:18px;bottom:18px;z-index:9999;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s}
   .gbs-wa-float:hover{transform:scale(1.08)}
   .gbs-wa-float svg{width:34px;height:34px;fill:#fff}
+
+  body{overflow-x:clip}
+  #mobile-nav-container{z-index:10000!important}
+  .gbs-footer-mobile{display:none}
+  @media (max-width:1200px){
+    .gbs-footer-mobile{display:grid;gap:22px;padding:8px 0 36px;color:#11286d;text-align:center}
+    .gbs-footer-mobile h4{font-family:"AdihausDIN-Bold",sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:15px;margin:0 0 8px;color:#11286d}
+    .gbs-footer-mobile p{font-family:"Lato-Regular",sans-serif;font-size:15px;line-height:1.6;margin:0 0 6px}
+    .gbs-fm-btn{justify-self:center;display:inline-block;background:#e2211c;color:#fff!important;font-family:"AdihausDIN-Bold",sans-serif;font-size:16px;padding:14px 28px;border-radius:40px;text-decoration:none}
+  }
+  @media (min-width:640px) and (max-width:1200px){.gbs-footer-mobile{grid-template-columns:1fr 1fr}.gbs-fm-btn{grid-column:1/-1}}
+  @media (max-width:960px){
+    .call-to-action_bookfirstclass .text-container h3.h3{font-size:46px!important;line-height:1.05!important;margin-bottom:24px}
+    .call-to-action_bookfirstclass .text-container .GB_button{text-align:center;padding:14px 22px!important;box-sizing:border-box;height:auto!important;min-height:52px;line-height:1.3!important;display:flex!important;align-items:center;justify-content:center}
+  }
+  @media (max-width:640px){
+    .gbs-info p a{display:inline-block;padding:8px 0}
+    .gbs-hours td{padding:9px 0}
+    .gbs-map{height:300px}
+    .gbs-wa-float{width:54px;height:54px;right:14px;bottom:14px}
+    .gbs-wa-float svg{width:30px;height:30px}
+  }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SportsActivityLocation","name":"Gracie Barra Sudoeste","description":"Jiu-Jitsu para todos no Setor Sudoeste, Brasília - DF. Aulas para crianças, mulheres e adultos na Gracie Barra Sudoeste. Agende sua aula experimental gratuita pelo WhatsApp.","telephone":"+55-61-3548-7077","address":{"@type":"PostalAddress","streetAddress":"SIG Quadra 03 BL B Lote 87 - B - Setor Sudoeste","addressLocality":"Brasília","addressRegion":"DF","postalCode":"70610-432","addressCountry":"BR"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"12:00"}],"sameAs":["https://www.instagram.com/gb.sudoeste/"]}</script>
 </head>
@@ -615,7 +637,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 			<div class="uk-grid uk-grid-collapse">
 									<div class="uk-width-1-1 uk-width-1-3@l image-column">
 						<div class="image-container">
-							<img width="640" height="852" src="./assets/image_92-769x1024.jpg" class="attachment-large size-large" alt="Fachada de uma escola Gracie Barra" decoding="async" sizes="(max-width: 640px) 100vw, 640px">						</div>
+							<img width="1200" height="1600" src="./assets/fachada.jpg" class="attachment-large size-large" alt="Fachada da Gracie Barra Sudoeste, no SIG Quadra 03, Setor Sudoeste - Brasília/DF" decoding="async" loading="lazy" style="object-position:center 55%">						</div>
 					</div>
 								<div class="uk-width-1-1 uk-width-2-3@l text-column">
 					<div class="content-container">
@@ -902,7 +924,12 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 </ul>
 </li>
 </ul></div>		</div>
-		<div id="GB_footer_logo_container" class="">
+		<div class="gbs-footer-mobile">
+  <div class="gbs-fm-col"><h4>Gracie Barra Sudoeste</h4><p>SIG Quadra 03 BL B Lote 87 - B<br>Setor Sudoeste, Brasília - DF<br>CEP 70610-432</p><p>Telefone: (61) 3548-7077</p></div>
+  <div class="gbs-fm-col"><h4>Horários</h4><p>Segunda a sexta: 07:00 – 22:00<br>Sábado: 09:00 – 12:00<br>Domingo: Fechado</p></div>
+  <a class="gbs-fm-btn" href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">Agende sua aula experimental</a>
+</div>
+<div id="GB_footer_logo_container" class="">
 			<img src="./assets/nationalfooter_logos-stacked.svg" class="attachment-full size-full" alt="" role="presentation" aria-hidden="true" aria-label="Gracie Barra Sudoeste" decoding="async" loading="lazy">		</div>
 		<div id="GB_footer_copyright_container" class="uk-flex">
 			<div class="copyright-menu-container uk-flex-inline uk-flex-middle uk-flex-center@s uk-flex-left@xl">
