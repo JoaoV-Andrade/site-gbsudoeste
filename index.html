@@ -194,6 +194,12 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
   .gb-home-page-container .home-header-container .header-content-container .header-image-container{position:absolute;inset:0}
   .gbs-hero-videos{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#11286d}
   .gbs-hero-video{width:100%;height:100%;object-fit:cover;display:block}
+  .gbs-hero-foto{display:none}
+  @media(max-width:767px){
+    .gbs-hero-videos{display:none}
+    .gbs-hero-foto{display:block;position:absolute;inset:0}
+    .gbs-hero-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+  }
   .gb-home-page-container .home-header-container .header-content-container .header-image-overlay{background:rgba(255,255,255,.65)}
   /* Foto da fachada em tela cheia, logo após "Nós Somos" */
   .gbs-foto-fachada{width:100%;height:100vh;overflow:hidden}
@@ -267,10 +273,14 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 		<div class="header-content-container">
 			<div class="header-image-container">
 				<div class="gbs-hero-videos">
-					<video class="gbs-hero-video" src="./assets/videos/hero-1.mp4" poster="./assets/videos/hero-1.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-					<video class="gbs-hero-video" src="./assets/videos/hero-2.mp4" poster="./assets/videos/hero-2.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-					<video class="gbs-hero-video" src="./assets/videos/hero-3.mp4" poster="./assets/videos/hero-3.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+					<video class="gbs-hero-video" data-src="./assets/videos/hero-1.mp4" poster="./assets/videos/hero-1.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+					<video class="gbs-hero-video" data-src="./assets/videos/hero-2.mp4" poster="./assets/videos/hero-2.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+					<video class="gbs-hero-video" data-src="./assets/videos/hero-3.mp4" poster="./assets/videos/hero-3.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
 				</div>
+				<picture class="gbs-hero-foto">
+					<source media="(min-width: 768px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+					<img src="./assets/turma.jpeg" width="1280" height="720" alt="Turma de alunos da Gracie Barra Sudoeste, academia de Jiu-Jitsu em Brasília" fetchpriority="high" decoding="async">
+				</picture>
 							</div>
 
 			<div class="header-image-overlay">
@@ -855,7 +865,18 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
   (function(){
     var vids=document.querySelectorAll(".gbs-hero-video");
     var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    vids.forEach(function(v){ v.muted=true; if(reduce){ v.removeAttribute("autoplay"); v.pause(); } else { var p=v.play(); if(p&&p.catch) p.catch(function(){}); } });
+    var desktop=window.matchMedia("(min-width: 768px)");
+    // No celular a hero mostra a foto da turma; os vídeos só são baixados em telas maiores
+    function carregar(){
+      if(!desktop.matches) return;
+      vids.forEach(function(v){
+        if(!v.getAttribute("src")){ v.src=v.getAttribute("data-src"); v.preload="auto"; }
+        v.muted=true;
+        if(!reduce){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+      });
+    }
+    carregar();
+    if(desktop.addEventListener) desktop.addEventListener("change",carregar); else if(desktop.addListener) desktop.addListener(carregar);
   })();
   // Menu mobile: fecha o menu (que esconde o conteúdo) antes de rolar até a seção
   jQuery(function($){
