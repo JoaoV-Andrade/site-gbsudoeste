@@ -10,13 +10,13 @@
 
 <!-- / GB RM Schema -->
 	<!-- This site is optimized with the Yoast SEO plugin v28.4 - https://yoast.com/product/yoast-seo-wordpress/ -->
-	<title>Gracie Barra Sudoeste | Jiu-Jitsu no Sudoeste - Brasília/DF</title>
-	<meta name="description" content="Jiu-Jitsu para todos no Setor Sudoeste, Brasília - DF. Aulas para crianças, mulheres e adultos na Gracie Barra Sudoeste. Agende sua aula experimental gratuita pelo WhatsApp.">
+	<title>Academia de Jiu-Jitsu no Sudoeste, Brasília/DF | Gracie Barra Sudoeste</title>
+	<meta name="description" content="Academia de Jiu-Jitsu no Sudoeste, Brasília/DF. Aulas de Jiu-Jitsu para crianças, mulheres e adultos, do iniciante ao avançado, na Gracie Barra Sudoeste. Aula experimental grátis.">
 	
 	<meta property="og:locale" content="pt_BR">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="Gracie Barra Sudoeste | Jiu-Jitsu no Sudoeste - Brasília/DF">
-	<meta property="og:description" content="Jiu-Jitsu para todos no Setor Sudoeste, Brasília - DF. Aulas para crianças, mulheres e adultos na Gracie Barra Sudoeste. Agende sua aula experimental gratuita pelo WhatsApp.">
+	<meta property="og:title" content="Academia de Jiu-Jitsu no Sudoeste, Brasília/DF | Gracie Barra Sudoeste">
+	<meta property="og:description" content="Academia de Jiu-Jitsu no Sudoeste, Brasília/DF. Aulas de Jiu-Jitsu para crianças, mulheres e adultos, do iniciante ao avançado, na Gracie Barra Sudoeste. Aula experimental grátis.">
 	<meta property="og:site_name" content="Gracie Barra Sudoeste">
 	<meta property="og:image" content="http://graciebarra.com/brazil/wp-content/uploads/sites/206/sites/206/2025/04/GB-BW-scaled.jpg">
 	<meta property="og:image:width" content="2560">
@@ -101,7 +101,16 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 }
 
 .call-to-action_bookfirstclass .call-to-action .text-container .GB_button {
-	width: 280px!important;
+	display: inline-flex!important;
+	width: auto!important;
+	max-width: 100%;
+	height: auto!important;
+	min-height: 52px;
+	box-sizing: border-box;
+	padding: 14px 32px!important;
+	line-height: 1.3!important;
+	text-align: center;
+	white-space: normal;
 }
 
 .call-to-action_bookfirstclass .call-to-action .text-container h3 {
@@ -180,6 +189,60 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     .gbs-wa-float{width:54px;height:54px;right:14px;bottom:14px}
     .gbs-wa-float svg{width:30px;height:30px}
   }
+
+  /* Hero: 3 vídeos verticais lado a lado cobrindo o fundo */
+  .gb-home-page-container .home-header-container .header-content-container .header-image-container{position:absolute;inset:0}
+  .gbs-hero-videos{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#11286d}
+  .gbs-hero-video{width:100%;height:100%;object-fit:cover;display:block}
+  .gb-home-page-container .home-header-container .header-content-container .header-image-overlay{background:rgba(255,255,255,.65)}
+  /* Foto da fachada em tela cheia, logo após "Nós Somos" */
+  .gbs-foto-fachada{width:100%;height:100vh;overflow:hidden}
+  .gbs-foto-fachada img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+
+  /* Seção da academia: fachada em tela cheia */
+  .gbs-local{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#11286d;color:#fff;padding:56vh 0 40px}
+  .gbs-local-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  .gbs-local-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,40,109,0) 30%,rgba(17,40,109,.85) 60%,#11286d 100%)}
+  .gbs-local-inner{position:relative;z-index:1;width:100%;display:flex;justify-content:flex-end}
+  .gbs-local-card{width:100%;max-width:620px;box-sizing:border-box;background:rgba(17,40,109,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:28px 22px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .gbs-local-eyebrow{display:inline-block;font-family:"AdihausDIN-Bold",sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#e2211c;border-radius:40px;padding:5px 12px;margin-bottom:14px}
+  .gbs-local h2{font-family:"AdihausDIN-Bold",sans-serif;color:#fff;font-size:32px;line-height:1.05;text-transform:uppercase;margin:0 0 12px}
+  .gbs-local-lead{font-family:"Lato-Regular",sans-serif;font-size:17px;line-height:1.5;color:rgba(255,255,255,.9);margin:0 0 22px}
+  .gbs-local-grid{display:grid;gap:20px;margin-bottom:20px}
+  .gbs-local h4{font-family:"AdihausDIN-Bold",sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#ff6b66;margin:0 0 6px}
+  .gbs-local-grid p{font-family:"Lato-Regular",sans-serif;font-size:15px;line-height:1.55;color:#fff;margin:0 0 16px}
+  .gbs-local-grid p:last-child{margin-bottom:0}
+  .gbs-local a{color:#fff}
+  .gbs-local .gbs-hours td{font-family:"Lato-Regular",sans-serif;font-size:15px;color:#fff}
+  .gbs-local .gbs-map{height:220px;border-radius:10px;margin:0 0 22px;display:block}
+  .gbs-local-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+  .gbs-local-btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;background:#e2211c;color:#fff!important;font-family:"AdihausDIN-Bold",sans-serif;font-size:17px;line-height:1.3;padding:14px 28px;border-radius:100px;text-decoration:none;transition:background .2s}
+  .gbs-local-btn:hover{background:#d0021b;text-decoration:none}
+  .gbs-local-link{font-family:"AdihausDIN-Bold",sans-serif;font-size:16px;text-decoration:underline;text-underline-offset:4px}
+  @media(min-width:640px){.gbs-local-grid{grid-template-columns:1fr 1fr;gap:28px}.gbs-local-card{padding:36px}}
+  @media(min-width:1200px){
+    .gbs-local{padding:90px 0}
+    .gbs-local-bg{object-position:center 45%}
+    .gbs-local-shade{background:linear-gradient(90deg,rgba(17,40,109,0) 25%,rgba(17,40,109,.55) 55%,rgba(17,40,109,.9) 100%)}
+    .gbs-local h2{font-size:44px}
+  }
+  html{scroll-behavior:smooth}
+  .gb-home-page-container .top-text-container{padding-bottom:60px}
+  @media(min-width:992px){.gb-home-page-container .top-text-container{padding-bottom:80px}}
+  #sobre,#aulas,#contato,#por-que-gracie-barra{scroll-margin-top:110px}
+
+  /* Hero alinhado às buscas: jiu-jitsu sudoeste / jiu-jitsu brasília / academia de jiu-jitsu */
+  .gb-home-page-container .heading-container h1.gbs-hero-h1{margin-top:0;font-size:44px;line-height:1.02}
+  .gb-home-page-container .heading-container h1.gbs-hero-h1 span.gbs-hero-kw{display:block!important;font-size:20px!important;line-height:1.2!important;margin-top:12px!important;color:#e2211c!important;vertical-align:baseline!important;letter-spacing:.02em!important}
+  .gb-home-page-container .home-header-container .heading-container .brand-text-container{font-size:18px!important;letter-spacing:.08em!important;color:#11286d!important}
+  .gb-home-page-container .home-header-container .heading-container .subtext-container.gbs-hero-text{font-size:18px!important;line-height:1.45!important;margin-bottom:32px!important}
+  @media(min-width:992px){
+    .gb-home-page-container .heading-container h1.gbs-hero-h1{font-size:72px}
+    .gb-home-page-container .heading-container h1.gbs-hero-h1 span.gbs-hero-kw{font-size:30px!important}
+    .gb-home-page-container .home-header-container .heading-container .brand-text-container{font-size:22px!important}
+    .gb-home-page-container .home-header-container .heading-container .subtext-container.gbs-hero-text{font-size:22px!important;margin-bottom:44px!important}
+  }
+  @media(min-width:1200px){.gb-home-page-container .heading-container h1.gbs-hero-h1{font-size:88px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SportsActivityLocation","name":"Gracie Barra Sudoeste","description":"Jiu-Jitsu para todos no Setor Sudoeste, Brasília - DF. Aulas para crianças, mulheres e adultos na Gracie Barra Sudoeste. Agende sua aula experimental gratuita pelo WhatsApp.","telephone":"+55-61-3548-7077","address":{"@type":"PostalAddress","streetAddress":"SIG Quadra 03 BL B Lote 87 - B - Setor Sudoeste","addressLocality":"Brasília","addressRegion":"DF","postalCode":"70610-432","addressCountry":"BR"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"12:00"}],"sameAs":["https://www.instagram.com/gb.sudoeste/"]}</script>
 </head>
@@ -203,8 +266,11 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 
 		<div class="header-content-container">
 			<div class="header-image-container">
-				<div class="video-embed-container uk-visible@l"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/iIhHECCvZlU?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=iIhHECCvZlU&amp;controls=0&amp;rel=0" loop="" autoplay="" muted="" title="GB Website Header V1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="0" data-gtm-yt-inspected-12="true" id="162111670"></iframe></div>					<div class="image-container uk-hidden@l">
-						<img width="640" height="308" src="./assets/GB-BW-1024x492.jpg" class="home-page-header-image wp-post-image" alt="Two men in Gracie Barra gear" decoding="async" fetchpriority="high" sizes="(max-width: 640px) 100vw, 640px">					</div>
+				<div class="gbs-hero-videos">
+					<video class="gbs-hero-video" src="./assets/videos/hero-1.mp4" poster="./assets/videos/hero-1.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+					<video class="gbs-hero-video" src="./assets/videos/hero-2.mp4" poster="./assets/videos/hero-2.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+					<video class="gbs-hero-video" src="./assets/videos/hero-3.mp4" poster="./assets/videos/hero-3.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+				</div>
 							</div>
 
 			<div class="header-image-overlay">
@@ -214,15 +280,14 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 
     <div id="" class="uk-container header-nav">
         <div class="site-branding">
-            <a class="back-home" href="#" aria-label="Início"><img src="./assets/logosBarraShield.svg" class="site-logo" alt="Gracie Barra" role="presentation" aria-hidden="true" aria-label="Gracie Barra Sudoeste" decoding="async"></a>
+            <a class="back-home" href="#page" aria-label="Início"><img src="./assets/logosBarraShield.svg" class="site-logo" alt="Gracie Barra" role="presentation" aria-hidden="true" aria-label="Gracie Barra Sudoeste" decoding="async"></a>
             <a class="sticky-book-class-btn" href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Agende uma Aula" role="button" target="_blank" rel="noopener">Agende uma Aula</a>
             
         </div><!-- .site-branding -->
                     <nav class="site-navigation showOnDesktop">
-                <div class="menu-menu-principal-container"><ul id="primary-menu" class="menu"><li id="menu-item-40" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Sobre Nós" target="_blank" rel="noopener">Sobre Nós</a></li>
-<li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Por que Gracie Barra" target="_blank" rel="noopener">Por que Gracie Barra</a></li>
-<li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Aulas" target="_blank" rel="noopener">Aulas</a></li>
-<li id="menu-item-796" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-796"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Novidades" target="_blank" rel="noopener">Novidades</a></li>
+                <div class="menu-menu-principal-container"><ul id="primary-menu" class="menu"><li id="menu-item-40" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40"><a href="#sobre" aria-label="Sobre Nós">Sobre Nós</a></li>
+<li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"><a href="#por-que-gracie-barra" aria-label="Por que Gracie Barra">Por que Gracie Barra</a></li>
+<li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="#aulas" aria-label="Aulas">Aulas</a></li>
 <li id="menu-item-402" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-402"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Fale Conosco" target="_blank" rel="noopener">Fale Conosco</a></li>
 <li id="menu-item-43" class="button invert menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="WhatsApp" target="_blank" rel="noopener">WhatsApp</a></li>
 <li id="menu-item-31" class="button menu-item menu-item-type-custom menu-item-object-custom menu-item-31"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Agende uma Aula Experimental" role="button" target="_blank" rel="noopener">Agende uma Aula Experimental</a></li>
@@ -236,42 +301,40 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <div class="sticky-spacer"></div>
 				<div class="top-content-container">
 					<div class="uk-container">
-						<did class="heading-container">
-															<div class="brand-text-container uk-text-center uk-text-uppercase">
-									Gracie Barra Sudoeste								</div>
-														<div class="h1 uk-text-center">JIU-JITSU PARA TODOS<sup>®</sup></div>															<div class="subtext-container uk-text-center">
-									Iniciar na Gracie Barra Sudoeste é fácil								</div>
-																						<div class="button-container uk-text-center">
+						<div class="heading-container">
+								<div class="brand-text-container uk-text-center uk-text-uppercase">Gracie Barra Sudoeste · Brasília/DF</div>
+								<h1 class="h1 uk-text-center gbs-hero-h1">Jiu-Jitsu no Sudoeste<span class="gbs-hero-kw">Academia de Jiu-Jitsu em Brasília</span></h1>
+								<div class="subtext-container uk-text-center gbs-hero-text">
+									Aulas para crianças, mulheres e adultos, do iniciante ao avançado.<br>Jiu-Jitsu para Todos<sup>®</sup> com a metodologia Gracie Barra.
+								</div>
+								<div class="button-container uk-text-center">
 									<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." role="button" target="_blank" rel="noopener">Agende sua aula experimental grátis</a>
 								</div>
-													</did>
+							</div>
 					</div>
 
 				</div>
 			</div>
 		</div>
-						<div class="header-side-image-container uk-visible@l" uk-parallax="y: -150,0;  end: 50vh + 50%;" style="transform: translateY(-107.105px); will-change: transform;">
-				<img width="503" height="625" src="./assets/DSC06242bbb_1.png" class="attachment-large size-large" alt="" decoding="async" sizes="(max-width: 503px) 100vw, 503px">			</div>
 			</div>
 
 	<div class="uk-container">
-		<div class="top-text-container uk-flex-center">
+		<div id="sobre" class="top-text-container uk-flex-center">
 							<div class="top-text-content">
-					<h1><b>Nós Somos Gracie Barra Sudoeste</b></h1>
+					<h2><b>Nós Somos Gracie Barra Sudoeste</b></h2>
 <p>Desde 1986, a Gracie Barra transforma vidas por meio do Jiu-Jitsu. Fundada pelo Mestre Carlos Gracie Jr., tornou-se uma das maiores organizações de Jiu-Jitsu do mundo, reunindo mais de 1.000 escolas e uma comunidade global unida pelo propósito de levar o Jiu-Jitsu para Todos. No Setor Sudoeste, em Brasília, a Gracie Barra Sudoeste leva essa mesma metodologia e esse mesmo padrão de ensino para alunos de todas as idades e níveis.</p>
 <p><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener"><b>Fale com a nossa equipe</b></a></p>
 				</div>
 					</div>
 	</div>
 
-	<div class="what-is-section-container">
+	<div class="gbs-foto-fachada">
+		<img src="./assets/fachada.jpg" width="1200" height="1600" alt="Fachada da Gracie Barra Sudoeste, academia de Jiu-Jitsu no Setor Sudoeste, Brasília/DF" loading="lazy" decoding="async">
+	</div>
+
+	<div id="aulas" class="what-is-section-container">
 		<div class="uk-container">
-							<div class="what-is-video-container uk-flex-center">
-					<div class="what-is-video-content">
-						<iframe title="The Gracie Barra experience" width="100%" height="100%" src="https://www.youtube.com/embed/WlLC_-E5sgE?rel=0" loop="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1" data-gtm-yt-inspected-12="true" id="957900339"></iframe>
-					</div>
-				</div>
-						<div class="what-is-section-content">
+				<div class="what-is-section-content">
 									<div class="h2 uk-text-center">
 						O que é Jiu-Jitsu?					</div>
 								<div class="content-container">
@@ -620,7 +683,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
         </div>
     </div>
 
-			<div class="mission-vision-section-container">
+			<div id="por-que-gracie-barra" class="mission-vision-section-container">
 			<div class="uk-container">
 				<div class="text-container uk-flex-center">
 					<div class="text-content">
@@ -633,266 +696,38 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 			</div>
 		</div>
 	
-			<div class="school-owner-section-container">
-			<div class="uk-grid uk-grid-collapse">
-									<div class="uk-width-1-1 uk-width-1-3@l image-column">
-						<div class="image-container">
-							<img width="1200" height="1600" src="./assets/fachada.jpg" class="attachment-large size-large" alt="Fachada da Gracie Barra Sudoeste, no SIG Quadra 03, Setor Sudoeste - Brasília/DF" decoding="async" loading="lazy" style="object-position:center 55%">						</div>
-					</div>
-								<div class="uk-width-1-1 uk-width-2-3@l text-column">
-					<div class="content-container">
-						<div class="text-wrapper">
-							<div class="text-content uk-text-center@s uk-text-left@l">
-								<h2 id="nossa-escola"><b>Treine na Gracie Barra Sudoeste</b></h2>
-<p><b>Estamos no Setor Sudoeste, em Brasília. Venha fazer sua aula experimental gratuita!</b></p>
-<div class="gbs-info">
-  <div>
-    <h4>Endereço</h4>
-    <p>SIG Quadra 03 BL B Lote 87 - B<br>Setor Sudoeste, Brasília - DF<br>CEP 70610-432</p>
-    <h4 style="margin-top:18px">Telefone</h4>
-    <p>(61) 3548-7077</p>
-    <h4 style="margin-top:18px">Instagram</h4>
-    <p><a href="https://www.instagram.com/gb.sudoeste/" target="_blank" rel="noopener">@gb.sudoeste</a></p>
-  </div>
-  <div>
-    <h4>Horário de funcionamento</h4>
-    <table class="gbs-hours"><tbody><tr><td>Segunda-feira</td><td>07:00 – 22:00</td></tr><tr><td>Terça-feira</td><td>07:00 – 22:00</td></tr><tr><td>Quarta-feira</td><td>07:00 – 22:00</td></tr><tr><td>Quinta-feira</td><td>07:00 – 22:00</td></tr><tr><td>Sexta-feira</td><td>07:00 – 22:00</td></tr><tr><td>Sábado</td><td>09:00 – 12:00</td></tr><tr><td>Domingo</td><td>Fechado</td></tr></tbody></table>
-  </div>
-</div>
-<iframe class="gbs-map" title="Mapa - Gracie Barra Sudoeste" src="https://www.google.com/maps?q=Gracie%20Barra%20Sudoeste%2C%20SIG%20Quadra%2003%20BL%20B%20Lote%2087%20-%20B%20-%20Setor%20Sudoeste%2C%20Bras%C3%ADlia%20-%20DF%2C%2070610-432&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			<section id="contato" class="gbs-local">
+				<img class="gbs-local-bg" src="./assets/fachada.jpg" width="1200" height="1600" alt="Fachada da Gracie Barra Sudoeste, no SIG Quadra 03, Setor Sudoeste - Brasília/DF" loading="lazy" decoding="async">
+				<div class="gbs-local-shade" aria-hidden="true"></div>
+				<div class="uk-container gbs-local-inner">
+					<div class="gbs-local-card">
+						<span class="gbs-local-eyebrow">Nossa academia</span>
+						<h2 id="nossa-escola">Treine Jiu-Jitsu no Sudoeste</h2>
+						<p class="gbs-local-lead">Estamos no SIG Quadra 03, Setor Sudoeste, em Brasília. Venha conhecer o tatame e fazer sua aula experimental gratuita.</p>
+						<div class="gbs-local-grid">
+							<div>
+								<h4>Endereço</h4>
+								<p>SIG Quadra 03 BL B Lote 87 - B<br>Setor Sudoeste, Brasília - DF<br>CEP 70610-432</p>
+								<h4>Telefone</h4>
+								<p><a href="tel:+556135487077">(61) 3548-7077</a></p>
+								<h4>Instagram</h4>
+								<p><a href="https://www.instagram.com/gb.sudoeste/" target="_blank" rel="noopener">@gb.sudoeste</a></p>
 							</div>
-															<div class="button-container uk-text-center@s uk-text-left@l">
-									<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">Agende sua aula experimental</a>
-								</div>
-													</div>
+							<div>
+								<h4>Horário de funcionamento</h4>
+								<table class="gbs-hours"><tbody><tr><td>Segunda-feira</td><td>07:00 – 22:00</td></tr><tr><td>Terça-feira</td><td>07:00 – 22:00</td></tr><tr><td>Quarta-feira</td><td>07:00 – 22:00</td></tr><tr><td>Quinta-feira</td><td>07:00 – 22:00</td></tr><tr><td>Sexta-feira</td><td>07:00 – 22:00</td></tr><tr><td>Sábado</td><td>09:00 – 12:00</td></tr><tr><td>Domingo</td><td>Fechado</td></tr></tbody></table>
+							</div>
+						</div>
+						<iframe class="gbs-map" title="Mapa - Gracie Barra Sudoeste" src="https://www.google.com/maps?q=Gracie%20Barra%20Sudoeste%2C%20SIG%20Quadra%2003%20BL%20B%20Lote%2087%20-%20B%20-%20Setor%20Sudoeste%2C%20Bras%C3%ADlia%20-%20DF%2C%2070610-432&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						<div class="gbs-local-actions">
+							<a class="gbs-local-btn" href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">Agende sua aula experimental</a>
+							<a class="gbs-local-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Gracie%20Barra%20Sudoeste%2C%20SIG%20Quadra%2003%20BL%20B%20Lote%2087%2C%20Bras%C3%ADlia%20-%20DF" target="_blank" rel="noopener">Como chegar →</a>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	        <div id="GB-news-section-container" class="successStory_container uk-container hide-content uk-margin-large-top">
-                            <h2 class="h2">News</h2>
-            	<div class="marquee_container" style="--marquee--speed:200s">
-		<div id="hm_news" class="GB_marquee">
-			<div class="pause">
-				<i class="fa-regular fa-circle-pause"></i>
-			</div>
-      
-			<div class="mq-container">
-				<div class="marquee enable-animation marquee--hover-pause">
-											<ul class="marquee__content">							
-							
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													GB Studio: Simplificando o Branding, o Marketing e...												</div>
-
-												<div class="text">
-													...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													Como Treinar Jiu-Jitsu com Segurança: Dicas da Gracie...												</div>
-
-												<div class="text">
-													Você já se perguntou se o Jiu-Jitsu é um esporte seguro? Se sim, saiba que você não está sozinho. À luz de acontecimentos recentes que despertaram preocupações em relação à...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													Os Hábitos dos Grandes Líderes: Como o Jiu-Jitsu...												</div>
-
-												<div class="text">
-													O que significa ser um líder? Quais qualidades uma pessoa precisa ter para liderar? Talvez a pergunta mais desafiadora seja: quais virtudes fazem de alguém um grande líder, capaz de...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													5 Hábitos dos Faixas Brancas Altamente Eficazes												</div>
-
-												<div class="text">
-													O primeiro ano de um aluno de Jiu-Jitsu da Gracie Barra é o período mais empolgante e desafiador de toda a sua jornada. É um momento empolgante porque você acaba...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													As Origens do Jiu-Jitsu: A História por Trás...												</div>
-
-												<div class="text">
-													Ao vestir seu kimono de Jiu-Jitsu e tomar seu açaí antes do treino, no que você costuma pensar? Se você é como muitos praticantes de Jiu-Jitsu, provavelmente está ansioso pelo...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-							            
-						
-                            <!-- motto -->
-                            
-                            <!-- red-white text school -->
-                            
-                            <!-- red-white text -->
-                                                    </ul>
-                    						<ul class="marquee__content">							
-							
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													GB Studio: Simplificando o Branding, o Marketing e...												</div>
-
-												<div class="text">
-													...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													Como Treinar Jiu-Jitsu com Segurança: Dicas da Gracie...												</div>
-
-												<div class="text">
-													Você já se perguntou se o Jiu-Jitsu é um esporte seguro? Se sim, saiba que você não está sozinho. À luz de acontecimentos recentes que despertaram preocupações em relação à...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													Os Hábitos dos Grandes Líderes: Como o Jiu-Jitsu...												</div>
-
-												<div class="text">
-													O que significa ser um líder? Quais qualidades uma pessoa precisa ter para liderar? Talvez a pergunta mais desafiadora seja: quais virtudes fazem de alguém um grande líder, capaz de...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													5 Hábitos dos Faixas Brancas Altamente Eficazes												</div>
-
-												<div class="text">
-													O primeiro ano de um aluno de Jiu-Jitsu da Gracie Barra é o período mais empolgante e desafiador de toda a sua jornada. É um momento empolgante porque você acaba...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-															<li>
-									<div class="uk-card uk-card-default story">
-										<a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-											<div class="uk-card-body storydetails">
-												<div class="gb-article_title">
-													As Origens do Jiu-Jitsu: A História por Trás...												</div>
-
-												<div class="text">
-													Ao vestir seu kimono de Jiu-Jitsu e tomar seu açaí antes do treino, no que você costuma pensar? Se você é como muitos praticantes de Jiu-Jitsu, provavelmente está ansioso pelo...												</div>
-											</div>
-										</a>
-									</div>
-								</li>
-							            
-						
-                            <!-- motto -->
-                            
-                            <!-- red-white text school -->
-                            
-                            <!-- red-white text -->
-                                                    </ul>
-                                    </div>
-            </div>
-        </div>
-    </div>
-        </div>
+			</section>
     
-<div class="gc-what-sets-us-apart-container">
-    <div class="uk-container">
-                    <div class="heading-text-container uk-flex uk-flex-center">
-                <div class="heading-text-content uk-text-center">
-                    <h2>O Que Nos Torna Únicos</h2>
-<p>Somos uma comunidade global unida pelo Jiu-Jitsu. Com mais de 1.000 escolas em seis continentes, compartilhamos uma metodologia de ensino estruturada, uma identidade comum e o compromisso de proporcionar uma experiência Gracie Barra consistente em qualquer lugar do mundo.</p>
-<p>Para apoiar nossas escolas, professores e alunos nessa missão, construímos ao longo dos anos um ecossistema global de organizações e iniciativas, cada uma contribuindo para fortalecer a comunidade Gracie Barra e levar o Jiu-Jitsu para Todos.</p>
-                </div>
-            </div>
-                            <div class="blocks-container uk-grid uk-grid-collapse" uk-grid="">
-                                    <div class="block-container uk-first-column" style="background-image: url(http://graciebarra.com/brazil/wp-content/uploads/sites/206/sites/206/2025/04/GB-wear.jpg)">
-                        <a aria-label="more..." href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-                            <div class="content-container uk-flex uk-flex-column">
-                                                                    <div class="logo-container">
-                                        <img width="500" height="212" src="./assets/1-e1753127310665.png" class="attachment-full size-full" alt="" role="presentation" aria-hidden="true" aria-label="" decoding="async" sizes="(max-width: 500px) 100vw, 500px">                                    </div>
-                                                                                                    <div class="text-container">Vestuário oficial que conecta e representa nossa identidade dentro e fora do tatame.</div>
-                                                            </div>
-                        </a>
-                    </div>
-                                    <div class="block-container " style="background-image: url(http://graciebarra.com/brazil/wp-content/uploads/sites/206/sites/206/2025/04/GB-institute.jpg)">
-                        <a aria-label="more..." href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-                            <div class="content-container uk-flex uk-flex-column">
-                                                                    <div class="logo-container">
-                                        <img width="500" height="171" src="./assets/2-e1753127328865.png" class="attachment-full size-full" alt="" role="presentation" aria-hidden="true" aria-label="" decoding="async" sizes="(max-width: 500px) 100vw, 500px">                                    </div>
-                                                                                                    <div class="text-container">Formação e certificação de instrutores para manter a excelência do Método Gracie Barra em todo o mundo.</div>
-                                                            </div>
-                        </a>
-                    </div>
-                                    <div class="block-container " style="background-image: url(http://graciebarra.com/brazil/wp-content/uploads/sites/206/sites/206/2025/04/Untitled-design.jpg)">
-                        <a aria-label="more..." href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-                            <div class="content-container uk-flex uk-flex-column">
-                                                                    <div class="logo-container">
-                                        <img width="500" height="202" src="./assets/3-e1753127340764.png" class="attachment-full size-full" alt="" role="presentation" aria-hidden="true" aria-label="" decoding="async" sizes="(max-width: 500px) 100vw, 500px">                                    </div>
-                                                                                                    <div class="text-container">Plataforma digital com recursos e treinamentos para alunos e instrutores aprenderem e evoluírem constantemente.</div>
-                                                            </div>
-                        </a>
-                    </div>
-                                    <div class="block-container wide uk-grid-margin uk-first-column" style="background-image: url(http://graciebarra.com/brazil/wp-content/uploads/sites/206/sites/206/2025/04/9-.-GB-Events-Highlight.jpeg)">
-                        <a aria-label="more..." href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-                            <div class="content-container uk-flex uk-flex-column">
-                                                                    <div class="logo-container">
-                                        <img width="500" height="195" src="./assets/4-e1753127356302.png" class="attachment-full size-full" alt="" role="presentation" aria-hidden="true" aria-label="" decoding="async" sizes="(max-width: 500px) 100vw, 500px">                                    </div>
-                                                                                                    <div class="text-container">Competições e encontros que celebram o Jiu-Jitsu, promovem o espírito esportivo e fortalecem nossa comunidade.</div>
-                                                            </div>
-                        </a>
-                    </div>
-                                    <div class="block-container wide uk-grid-margin" style="background-image: url(http://graciebarra.com/brazil/wp-content/uploads/sites/206/sites/206/2025/05/Compnet.jpg)">
-                        <a aria-label="more..." href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">
-                            <div class="content-container uk-flex uk-flex-column">
-                                                                    <div class="logo-container">
-                                        <img width="258" height="86" src="./assets/CompnetFull-White2.png" class="attachment-full size-full" alt="" role="presentation" aria-hidden="true" aria-label="" decoding="async">                                    </div>
-                                                                                                    <div class="text-container"><strong>LIGA GLOBAL DE JIU-JITSU</strong><br><br>Liga global que conecta e reconhece os competidores, valorizando desempenho, dedicação e evolução.</div>
-                                                            </div>
-                        </a>
-                    </div>
-                            </div>
-            </div>
-</div></div>
+</div>
 
 <footer id="GB_footer" class="site-footer">
 	<div class="uk-container">
@@ -961,17 +796,16 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     <nav class="mobile-site-navigation">
         <div class="mob-navheader">
             <div class="site-branding-mobile">
-                <a href="#" aria-label="Início"><img src="./assets/logosBarraShield.svg" class="site-logo" alt="Gracie Barra" role="presentation" aria-hidden="true" aria-label="Gracie Barra Sudoeste" decoding="async" loading="lazy"></a>            </div><!-- .site-branding -->
+                <a href="#page" aria-label="Início"><img src="./assets/logosBarraShield.svg" class="site-logo" alt="Gracie Barra" role="presentation" aria-hidden="true" aria-label="Gracie Barra Sudoeste" decoding="async" loading="lazy"></a>            </div><!-- .site-branding -->
             <div class="close">
                 <i class="fa-solid fa-xmark-large"></i>
             </div>
         </div>
         <!-- primary nav -->
         <div class="primaryMobile">
-            <div class="mobile-nav"><ul id="menu-menu-principal" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Sobre Nós" target="_blank" rel="noopener">Sobre Nós</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Por que Gracie Barra" target="_blank" rel="noopener">Por que Gracie Barra</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Aulas" target="_blank" rel="noopener">Aulas</a></li>
-<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-796"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Novidades" target="_blank" rel="noopener">Novidades</a></li>
+            <div class="mobile-nav"><ul id="menu-menu-principal" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40"><a href="#sobre" aria-label="Sobre Nós">Sobre Nós</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"><a href="#por-que-gracie-barra" aria-label="Por que Gracie Barra">Por que Gracie Barra</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98"><a href="#aulas" aria-label="Aulas">Aulas</a></li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-402"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Fale Conosco" target="_blank" rel="noopener">Fale Conosco</a></li>
 <li class="button invert menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="WhatsApp" target="_blank" rel="noopener">WhatsApp</a></li>
 <li class="button menu-item menu-item-type-custom menu-item-object-custom menu-item-31"><a href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." aria-label="Agende uma Aula Experimental" role="button" target="_blank" rel="noopener">Agende uma Aula Experimental</a></li>
@@ -995,7 +829,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
             <!-- close logo -->
             <div class="mob-navfooter">
                 <div class="site-branding-mobile">
-                    <a href="#" aria-label="Início"><img src="./assets/logosBarraShield.svg" class="site-logo" alt="Gracie Barra" role="presentation" aria-hidden="true" aria-label="Gracie Barra Sudoeste" decoding="async" loading="lazy"></a>                </div><!-- .site-branding -->
+                    <a href="#page" aria-label="Início"><img src="./assets/logosBarraShield.svg" class="site-logo" alt="Gracie Barra" role="presentation" aria-hidden="true" aria-label="Gracie Barra Sudoeste" decoding="async" loading="lazy"></a>                </div><!-- .site-branding -->
             </div>
         </div>
     </nav><!-- #site-navigation -->
@@ -1016,6 +850,23 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <script id="form_scripts-js" src="./assets/forms.js.download"></script>
 <script id="pagination_scripts-js" src="./assets/pagination.js.download"></script>
 <script id="gb_main_script-js" src="./assets/main.js.download"></script>
+<script>
+  // Vídeos do hero: respeita "reduzir movimento" e garante autoplay em navegadores que o bloqueiam
+  (function(){
+    var vids=document.querySelectorAll(".gbs-hero-video");
+    var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    vids.forEach(function(v){ v.muted=true; if(reduce){ v.removeAttribute("autoplay"); v.pause(); } else { var p=v.play(); if(p&&p.catch) p.catch(function(){}); } });
+  })();
+  // Menu mobile: fecha o menu (que esconde o conteúdo) antes de rolar até a seção
+  jQuery(function($){
+    $("#mobile-nav-container").on("click","a[href^=\"#\"]",function(e){
+      var id=$(this).attr("href"); if(id.length<2) return;
+      e.preventDefault();
+      $("#mobile-nav-container .close").first().trigger("click");
+      setTimeout(function(){ var el=document.querySelector(id); if(el){ el.scrollIntoView({behavior:"smooth"}); history.replaceState(null,"",id); } },350);
+    });
+  });
+</script>
 
 
 
