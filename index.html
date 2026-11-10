@@ -273,10 +273,54 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     .gbs-local-shade{background:linear-gradient(90deg,rgba(17,40,109,0) 25%,rgba(17,40,109,.55) 55%,rgba(17,40,109,.9) 100%)}
     .gbs-local h2{font-size:44px}
   }
+  /* Vídeos da academia (formato vertical, estilo reels) */
+  .gbs-reels{background:radial-gradient(120% 80% at 85% 10%,#1d3c94 0%,#11286d 55%,#0c1d52 100%);color:#fff;padding:64px 0 56px;overflow:hidden}
+  .gbs-reels-wrap{display:grid;gap:32px;align-items:center}
+  .gbs-reels-text{text-align:center;max-width:560px;margin:0 auto}
+  .gbs-reels-eyebrow{display:inline-block;font-family:"AdihausDIN-Bold",sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#e2211c;border-radius:40px;padding:5px 12px;margin-bottom:14px}
+  .gbs-reels h2{font-family:"AdihausDIN-Bold",sans-serif;color:#fff;font-size:32px;line-height:1.05;text-transform:uppercase;margin:0 0 14px}
+  .gbs-reels-lead{font-family:"Lato-Regular",sans-serif;font-size:17px;line-height:1.55;color:rgba(255,255,255,.88);margin:0 0 24px}
+  .gbs-reels-btn{display:inline-flex;align-items:center;justify-content:center;background:#e2211c;color:#fff!important;font-family:"AdihausDIN-Bold",sans-serif;font-size:17px;line-height:1.3;padding:14px 28px;border-radius:100px;text-decoration:none;transition:background .2s}
+  .gbs-reels-btn:hover{background:#d0021b;text-decoration:none}
+  .gbs-reels-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:4px 16px 8px;scroll-padding:0 16px}
+  .gbs-reels-track::-webkit-scrollbar{display:none}
+  .gbs-reel{position:relative;flex:0 0 74vw;max-width:320px;aspect-ratio:9/16;margin:0;border-radius:18px;overflow:hidden;background:#0c1d52;box-shadow:0 18px 40px rgba(0,0,0,.4);scroll-snap-align:center;cursor:pointer}
+  .gbs-reel-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .gbs-reel::after{content:"";position:absolute;inset:auto 0 0;height:34%;background:linear-gradient(180deg,rgba(12,29,82,0),rgba(12,29,82,.88));pointer-events:none}
+  .gbs-reel figcaption{position:absolute;left:16px;right:16px;bottom:16px;z-index:2;font-family:"Lato-Regular",sans-serif;pointer-events:none}
+  .gbs-reel figcaption strong{display:block;font-family:"AdihausDIN-Bold",sans-serif;font-size:19px;line-height:1.15;text-transform:uppercase;color:#fff}
+  .gbs-reel figcaption span{display:block;font-size:14px;color:rgba(255,255,255,.8);margin-top:4px}
+  .gbs-reel-som{position:absolute;top:12px;right:12px;z-index:3;width:42px;height:42px;border:0;border-radius:50%;background:rgba(12,29,82,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:background .2s}
+  .gbs-reel-som:hover,.gbs-reel-som[aria-pressed="true"]{background:#e2211c}
+  .gbs-reel-som svg{width:22px;height:22px;fill:#fff}
+  .gbs-reel-som .i-on,.gbs-reel-som[aria-pressed="true"] .i-off{display:none}
+  .gbs-reel-som[aria-pressed="true"] .i-on{display:block}
+  .gbs-reel-play{position:absolute;top:50%;left:50%;z-index:2;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;background:rgba(226,33,28,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:opacity .25s,transform .25s;pointer-events:none}
+  .gbs-reel-play svg{width:30px;height:30px;fill:#fff;margin-left:4px}
+  .gbs-reel.is-playing .gbs-reel-play{opacity:0;transform:scale(.8)}
+  .gbs-reels-dots{display:flex;justify-content:center;gap:8px;margin-top:-12px}
+  .gbs-reels-dots span{width:8px;height:8px;border-radius:8px;background:rgba(255,255,255,.35);transition:all .25s}
+  .gbs-reels-dots span.on{width:24px;background:#fff}
+  @media(min-width:640px){
+    .gbs-reels-track{justify-content:center;overflow:visible;margin:0;padding:0}
+    .gbs-reel{flex:0 0 280px}
+    .gbs-reels-dots{display:none}
+  }
+  @media(min-width:992px){
+    .gbs-reels{padding:100px 0}
+    .gbs-reels-wrap{grid-template-columns:minmax(0,1fr) auto;gap:64px}
+    .gbs-reels-text{text-align:left;margin:0}
+    .gbs-reels h2{font-size:48px}
+    .gbs-reels-lead{font-size:19px}
+    .gbs-reels-track{gap:24px;padding-bottom:48px}
+    .gbs-reel{flex-basis:290px;max-width:none}
+    .gbs-reel:nth-child(2){transform:translateY(48px)}
+  }
+  @media(min-width:1200px){.gbs-reel{flex-basis:320px}}
   html{scroll-behavior:smooth}
   .gb-home-page-container .top-text-container{padding-bottom:60px}
   @media(min-width:992px){.gb-home-page-container .top-text-container{padding-bottom:80px}}
-  #sobre,#aulas,#contato,#por-que-gracie-barra{scroll-margin-top:110px}
+  #sobre,#videos,#aulas,#contato,#por-que-gracie-barra{scroll-margin-top:110px}
 
   /* Hero alinhado às buscas: jiu-jitsu sudoeste / jiu-jitsu brasília / academia de jiu-jitsu */
   .gb-home-page-container .heading-container h1.gbs-hero-h1{margin-top:0;font-size:44px;line-height:1.02}
@@ -291,7 +335,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
   }
   @media(min-width:1200px){.gb-home-page-container .heading-container h1.gbs-hero-h1{font-size:88px}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["SportsActivityLocation","ExerciseGym"],"@id":"https://www.graciebarrasudoeste.com.br/#academia","name":"Gracie Barra Sudoeste","alternateName":["GB Sudoeste","Gracie Barra Sudoeste Brasília","Academia de Jiu-Jitsu Gracie Barra Sudoeste"],"description":"Academia de Jiu-Jitsu no Setor Sudoeste, em Brasília - DF. Escola oficial da Gracie Barra com aulas de Jiu-Jitsu para crianças, mulheres e adultos, do iniciante ao avançado. Aula experimental gratuita.","url":"https://www.graciebarrasudoeste.com.br/","image":["https://www.graciebarrasudoeste.com.br/assets/turma.jpeg","https://www.graciebarrasudoeste.com.br/assets/fachada.jpg"],"logo":"https://www.graciebarrasudoeste.com.br/assets/logosBarraShield.svg","telephone":"+55-61-3548-7077","contactPoint":[{"@type":"ContactPoint","telephone":"+55-61-9271-9516","contactType":"customer service","availableLanguage":"Portuguese"}],"address":{"@type":"PostalAddress","streetAddress":"SIG Quadra 03 BL B Lote 87 - B - Setor Sudoeste","addressLocality":"Brasília","addressRegion":"DF","postalCode":"70610-432","addressCountry":"BR"},"hasMap":"https://www.google.com/maps/search/?api=1&query=Gracie%20Barra%20Sudoeste%20SIG%20Quadra%2003%20Bras%C3%ADlia","areaServed":[{"@type":"Place","name":"Setor Sudoeste"},{"@type":"Place","name":"Octogonal"},{"@type":"Place","name":"Cruzeiro"},{"@type":"Place","name":"SIG"},{"@type":"Place","name":"Asa Sul"},{"@type":"Place","name":"Brasília - DF"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"12:00"}],"sport":"Brazilian Jiu-Jitsu","knowsAbout":["Jiu-Jitsu","Brazilian Jiu-Jitsu","Jiu-Jitsu infantil","Jiu-Jitsu feminino","Defesa pessoal"],"keywords":"academia de jiu-jitsu em Brasília, jiu-jitsu Sudoeste, academia de jiu-jitsu no Sudoeste, Gracie Barra Brasília","brand":{"@type":"Brand","name":"Gracie Barra"},"parentOrganization":{"@type":"SportsOrganization","name":"Gracie Barra","url":"https://graciebarra.com","foundingDate":"1986","founder":{"@type":"Person","name":"Carlos Gracie Jr."}},"makesOffer":{"@type":"Offer","name":"Aula experimental gratuita de Jiu-Jitsu","price":"0","priceCurrency":"BRL","url":"https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita."},"sameAs":["https://www.instagram.com/gb.sudoeste/"]},{"@type":"WebSite","@id":"https://www.graciebarrasudoeste.com.br/#site","url":"https://www.graciebarrasudoeste.com.br/","name":"Gracie Barra Sudoeste","inLanguage":"pt-BR","publisher":{"@id":"https://www.graciebarrasudoeste.com.br/#academia"}},{"@type":"WebPage","@id":"https://www.graciebarrasudoeste.com.br/#pagina","url":"https://www.graciebarrasudoeste.com.br/","name":"Academia de Jiu-Jitsu no Sudoeste, Brasília/DF | Gracie Barra Sudoeste","description":"Academia de Jiu-Jitsu no Sudoeste, Brasília/DF. Aulas de Jiu-Jitsu para crianças, mulheres e adultos, do iniciante ao avançado, na Gracie Barra Sudoeste. Aula experimental grátis.","inLanguage":"pt-BR","isPartOf":{"@id":"https://www.graciebarrasudoeste.com.br/#site"},"about":{"@id":"https://www.graciebarrasudoeste.com.br/#academia"},"primaryImageOfPage":"https://www.graciebarrasudoeste.com.br/assets/turma.jpeg"},{"@type":"FAQPage","@id":"https://www.graciebarrasudoeste.com.br/#faq","mainEntity":[{"@type":"Question","name":"Onde fica a academia de Jiu-Jitsu Gracie Barra Sudoeste?","acceptedAnswer":{"@type":"Answer","text":"A Gracie Barra Sudoeste fica no SIG Quadra 03, Bloco B, Lote 87-B, Setor Sudoeste, Brasília - DF, CEP 70610-432. É uma academia de Jiu-Jitsu de fácil acesso para quem mora ou trabalha no Sudoeste, Octogonal, Cruzeiro, SIG e Asa Sul."}},{"@type":"Question","name":"A Gracie Barra Sudoeste é uma escola oficial da Gracie Barra em Brasília?","acceptedAnswer":{"@type":"Answer","text":"Sim. A Gracie Barra Sudoeste é uma escola da Gracie Barra, organização de Jiu-Jitsu fundada em 1986 pelo Mestre Carlos Gracie Jr. e presente em mais de 1.000 escolas no mundo. Em Brasília, segue a mesma metodologia e o mesmo padrão de ensino da rede."}},{"@type":"Question","name":"Tem aula experimental grátis de Jiu-Jitsu no Sudoeste?","acceptedAnswer":{"@type":"Answer","text":"Sim. A primeira aula na Gracie Barra Sudoeste é gratuita. Basta agendar pelo WhatsApp (61) 9271-9516 ou pelo telefone (61) 3548-7077."}},{"@type":"Question","name":"Quais são os horários da academia?","acceptedAnswer":{"@type":"Answer","text":"De segunda a sexta-feira, das 7h às 21h, e aos sábados, das 9h às 12h. Aos domingos a academia fica fechada."}},{"@type":"Question","name":"Tem Jiu-Jitsu para crianças, mulheres e iniciantes?","acceptedAnswer":{"@type":"Answer","text":"Sim. A Gracie Barra Sudoeste oferece aulas de Jiu-Jitsu para crianças, mulheres e adultos, do iniciante ao avançado. Não é preciso ter experiência nem estar em forma para começar."}},{"@type":"Question","name":"Por que treinar Jiu-Jitsu na Gracie Barra Sudoeste?","acceptedAnswer":{"@type":"Answer","text":"Porque você treina com a metodologia estruturada da Gracie Barra, uma das maiores organizações de Jiu-Jitsu do mundo, numa academia no Setor Sudoeste, em Brasília, com ambiente acolhedor para todas as idades e níveis: Jiu-Jitsu para Todos."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["SportsActivityLocation","ExerciseGym"],"@id":"https://www.graciebarrasudoeste.com.br/#academia","name":"Gracie Barra Sudoeste","alternateName":["GB Sudoeste","Gracie Barra Sudoeste Brasília","Academia de Jiu-Jitsu Gracie Barra Sudoeste"],"description":"Academia de Jiu-Jitsu no Setor Sudoeste, em Brasília - DF. Escola oficial da Gracie Barra com aulas de Jiu-Jitsu para crianças, mulheres e adultos, do iniciante ao avançado. Aula experimental gratuita.","url":"https://www.graciebarrasudoeste.com.br/","image":["https://www.graciebarrasudoeste.com.br/assets/turma.jpeg","https://www.graciebarrasudoeste.com.br/assets/fachada.jpg"],"logo":"https://www.graciebarrasudoeste.com.br/assets/logosBarraShield.svg","telephone":"+55-61-3548-7077","contactPoint":[{"@type":"ContactPoint","telephone":"+55-61-9271-9516","contactType":"customer service","availableLanguage":"Portuguese"}],"address":{"@type":"PostalAddress","streetAddress":"SIG Quadra 03 BL B Lote 87 - B - Setor Sudoeste","addressLocality":"Brasília","addressRegion":"DF","postalCode":"70610-432","addressCountry":"BR"},"hasMap":"https://www.google.com/maps/search/?api=1&query=Gracie%20Barra%20Sudoeste%20SIG%20Quadra%2003%20Bras%C3%ADlia","areaServed":[{"@type":"Place","name":"Setor Sudoeste"},{"@type":"Place","name":"Octogonal"},{"@type":"Place","name":"Cruzeiro"},{"@type":"Place","name":"SIG"},{"@type":"Place","name":"Asa Sul"},{"@type":"Place","name":"Brasília - DF"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"12:00"}],"sport":"Brazilian Jiu-Jitsu","knowsAbout":["Jiu-Jitsu","Brazilian Jiu-Jitsu","Jiu-Jitsu infantil","Jiu-Jitsu feminino","Defesa pessoal"],"keywords":"academia de jiu-jitsu em Brasília, jiu-jitsu Sudoeste, academia de jiu-jitsu no Sudoeste, Gracie Barra Brasília","brand":{"@type":"Brand","name":"Gracie Barra"},"parentOrganization":{"@type":"SportsOrganization","name":"Gracie Barra","url":"https://graciebarra.com","foundingDate":"1986","founder":{"@type":"Person","name":"Carlos Gracie Jr."}},"makesOffer":{"@type":"Offer","name":"Aula experimental gratuita de Jiu-Jitsu","price":"0","priceCurrency":"BRL","url":"https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita."},"sameAs":["https://www.instagram.com/gb.sudoeste/"]},{"@type":"WebSite","@id":"https://www.graciebarrasudoeste.com.br/#site","url":"https://www.graciebarrasudoeste.com.br/","name":"Gracie Barra Sudoeste","inLanguage":"pt-BR","publisher":{"@id":"https://www.graciebarrasudoeste.com.br/#academia"}},{"@type":"WebPage","@id":"https://www.graciebarrasudoeste.com.br/#pagina","url":"https://www.graciebarrasudoeste.com.br/","name":"Academia de Jiu-Jitsu no Sudoeste, Brasília/DF | Gracie Barra Sudoeste","description":"Academia de Jiu-Jitsu no Sudoeste, Brasília/DF. Aulas de Jiu-Jitsu para crianças, mulheres e adultos, do iniciante ao avançado, na Gracie Barra Sudoeste. Aula experimental grátis.","inLanguage":"pt-BR","isPartOf":{"@id":"https://www.graciebarrasudoeste.com.br/#site"},"about":{"@id":"https://www.graciebarrasudoeste.com.br/#academia"},"primaryImageOfPage":"https://www.graciebarrasudoeste.com.br/assets/turma.jpeg"},{"@type":"VideoObject","name":"Tour pela academia Gracie Barra Sudoeste","description":"Conheça a Gracie Barra Sudoeste, academia de Jiu-Jitsu no SIG Quadra 03, Setor Sudoeste, Brasília - DF: fachada, tatame, aulas para crianças e adultos e graduações.","thumbnailUrl":"https://www.graciebarrasudoeste.com.br/assets/videos/tour-academia.jpg","contentUrl":"https://www.graciebarrasudoeste.com.br/assets/videos/tour-academia.mp4","uploadDate":"2026-11-10","duration":"PT57S","inLanguage":"pt-BR","publisher":{"@id":"https://www.graciebarrasudoeste.com.br/#academia"}},{"@type":"VideoObject","name":"O que o Jiu-Jitsu realmente é - Gracie Barra Sudoeste","description":"Respeito, aprendizado, superação, cuidado, evolução e motivação: o Jiu-Jitsu na Gracie Barra Sudoeste, em Brasília - DF.","thumbnailUrl":"https://www.graciebarrasudoeste.com.br/assets/videos/o-que-e-jiu-jitsu.jpg","contentUrl":"https://www.graciebarrasudoeste.com.br/assets/videos/o-que-e-jiu-jitsu.mp4","uploadDate":"2026-11-10","duration":"PT28S","inLanguage":"pt-BR","publisher":{"@id":"https://www.graciebarrasudoeste.com.br/#academia"}},{"@type":"FAQPage","@id":"https://www.graciebarrasudoeste.com.br/#faq","mainEntity":[{"@type":"Question","name":"Onde fica a academia de Jiu-Jitsu Gracie Barra Sudoeste?","acceptedAnswer":{"@type":"Answer","text":"A Gracie Barra Sudoeste fica no SIG Quadra 03, Bloco B, Lote 87-B, Setor Sudoeste, Brasília - DF, CEP 70610-432. É uma academia de Jiu-Jitsu de fácil acesso para quem mora ou trabalha no Sudoeste, Octogonal, Cruzeiro, SIG e Asa Sul."}},{"@type":"Question","name":"A Gracie Barra Sudoeste é uma escola oficial da Gracie Barra em Brasília?","acceptedAnswer":{"@type":"Answer","text":"Sim. A Gracie Barra Sudoeste é uma escola da Gracie Barra, organização de Jiu-Jitsu fundada em 1986 pelo Mestre Carlos Gracie Jr. e presente em mais de 1.000 escolas no mundo. Em Brasília, segue a mesma metodologia e o mesmo padrão de ensino da rede."}},{"@type":"Question","name":"Tem aula experimental grátis de Jiu-Jitsu no Sudoeste?","acceptedAnswer":{"@type":"Answer","text":"Sim. A primeira aula na Gracie Barra Sudoeste é gratuita. Basta agendar pelo WhatsApp (61) 9271-9516 ou pelo telefone (61) 3548-7077."}},{"@type":"Question","name":"Quais são os horários da academia?","acceptedAnswer":{"@type":"Answer","text":"De segunda a sexta-feira, das 7h às 21h, e aos sábados, das 9h às 12h. Aos domingos a academia fica fechada."}},{"@type":"Question","name":"Tem Jiu-Jitsu para crianças, mulheres e iniciantes?","acceptedAnswer":{"@type":"Answer","text":"Sim. A Gracie Barra Sudoeste oferece aulas de Jiu-Jitsu para crianças, mulheres e adultos, do iniciante ao avançado. Não é preciso ter experiência nem estar em forma para começar."}},{"@type":"Question","name":"Por que treinar Jiu-Jitsu na Gracie Barra Sudoeste?","acceptedAnswer":{"@type":"Answer","text":"Porque você treina com a metodologia estruturada da Gracie Barra, uma das maiores organizações de Jiu-Jitsu do mundo, numa academia no Setor Sudoeste, em Brasília, com ambiente acolhedor para todas as idades e níveis: Jiu-Jitsu para Todos."}}]}]}</script>
 </head>
 
 <body class="home wp-singular page-template page-template-templates page-template-template-home page-template-templatestemplate-home-php page page-id-49 wp-theme-gracie_barra_national">
@@ -382,6 +426,34 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 	<div class="gbs-foto-fachada">
 		<img src="./assets/fachada.jpg" width="1200" height="1600" alt="Fachada da Gracie Barra Sudoeste, academia de Jiu-Jitsu no Setor Sudoeste, Brasília/DF" loading="lazy" decoding="async">
 	</div>
+
+	<section id="videos" class="gbs-reels" aria-labelledby="gbs-reels-titulo">
+		<div class="uk-container">
+			<div class="gbs-reels-wrap">
+				<div class="gbs-reels-text">
+					<span class="gbs-reels-eyebrow">Por dentro do tatame</span>
+					<h2 id="gbs-reels-titulo">Conheça a GB Sudoeste em vídeo</h2>
+					<p class="gbs-reels-lead">Faça um tour pela nossa academia no Setor Sudoeste e veja o que o Jiu-Jitsu realmente é: respeito, aprendizado, superação e evolução — para todas as idades.</p>
+					<a class="gbs-reels-btn" href="https://wa.me/556192719516?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gracie%20Barra%20Sudoeste%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." target="_blank" rel="noopener">Agende sua aula experimental</a>
+				</div>
+				<div class="gbs-reels-track" role="list">
+					<figure class="gbs-reel" role="listitem">
+						<video class="gbs-reel-video" data-src="./assets/videos/tour-academia.mp4" poster="./assets/videos/tour-academia.jpg" muted loop playsinline preload="none" aria-label="Tour pela academia Gracie Barra Sudoeste"></video>
+						<button type="button" class="gbs-reel-som" aria-label="Ativar som" aria-pressed="false"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4-2.7-2.7z"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
+						<span class="gbs-reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+						<figcaption><strong>Tour pela academia</strong><span>SIG Quadra 03 · Sudoeste</span></figcaption>
+					</figure>
+					<figure class="gbs-reel" role="listitem">
+						<video class="gbs-reel-video" data-src="./assets/videos/o-que-e-jiu-jitsu.mp4" poster="./assets/videos/o-que-e-jiu-jitsu.jpg" muted loop playsinline preload="none" aria-label="O que o Jiu-Jitsu realmente é, na Gracie Barra Sudoeste"></video>
+						<button type="button" class="gbs-reel-som" aria-label="Ativar som" aria-pressed="false"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4-2.7-2.7z"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
+						<span class="gbs-reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+						<figcaption><strong>O que é Jiu-Jitsu de verdade</strong><span>Respeito · Superação · Evolução</span></figcaption>
+					</figure>
+				</div>
+				<div class="gbs-reels-dots" aria-hidden="true"><span class="on"></span><span></span></div>
+			</div>
+		</div>
+	</section>
 
 	<div id="aulas" class="what-is-section-container">
 		<div class="uk-container">
@@ -950,6 +1022,47 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     }
     carregar();
     if(desktop.addEventListener) desktop.addEventListener("change",carregar); else if(desktop.addListener) desktop.addListener(carregar);
+  })();
+  // Vídeos da academia: baixam só quando aparecem na tela, tocam sem som e o visitante liga o som com um toque
+  (function(){
+    var cards=[].slice.call(document.querySelectorAll(".gbs-reel"));
+    if(!cards.length) return;
+    var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function vid(c){ return c.querySelector("video"); }
+    function carregar(v){ if(!v.getAttribute("src")){ v.src=v.getAttribute("data-src"); v.preload="auto"; } }
+    function tocar(c){ var v=vid(c); carregar(v); var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+    function setSom(c,on){ var b=c.querySelector(".gbs-reel-som"); b.setAttribute("aria-pressed",on?"true":"false"); b.setAttribute("aria-label",on?"Desativar som":"Ativar som"); vid(c).muted=!on; }
+    cards.forEach(function(c){
+      var v=vid(c);
+      v.addEventListener("play",function(){ c.classList.add("is-playing"); });
+      v.addEventListener("pause",function(){ c.classList.remove("is-playing"); });
+      // Toque no vídeo (ou no botão): liga o som deste e silencia o outro; se já estiver com som, desliga
+      function alternar(e){
+        e.preventDefault(); e.stopPropagation();
+        var ligar=v.muted||v.paused;
+        cards.forEach(function(o){ if(o!==c) setSom(o,false); });
+        setSom(c,ligar);
+        if(v.paused) tocar(c);
+      }
+      c.addEventListener("click",alternar);
+    });
+    if(!("IntersectionObserver" in window)){ cards.forEach(function(c){ carregar(vid(c)); if(!reduce) tocar(c); }); return; }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var c=en.target, v=vid(c);
+        if(en.isIntersecting&&en.intersectionRatio>=.6){ if(!reduce||!v.muted) tocar(c); }
+        else if(!v.paused){ v.pause(); setSom(c,false); }
+      });
+    },{threshold:[0,.6]});
+    cards.forEach(function(c){ io.observe(c); });
+    // Pontinhos do carrossel no celular
+    var track=document.querySelector(".gbs-reels-track"), dots=document.querySelectorAll(".gbs-reels-dots span");
+    if(track&&dots.length){
+      track.addEventListener("scroll",function(){
+        var max=track.scrollWidth-track.clientWidth, i=max>0?Math.round(track.scrollLeft/max*(dots.length-1)):0;
+        dots.forEach(function(d,k){ d.classList.toggle("on",k===i); });
+      },{passive:true});
+    }
   })();
   // Menu mobile: fecha o menu (que esconde o conteúdo) antes de rolar até a seção
   jQuery(function($){

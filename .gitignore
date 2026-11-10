@@ -2,3 +2,6 @@
 # Vídeos originais em 4K (pesados demais para o site/repositório)
 assets/*.MP4
 assets/*.HEIC
+
+# Vídeos originais (pesados); o site usa as versões comprimidas
+assets/videos/gb sudoeste*
